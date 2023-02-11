@@ -39,7 +39,7 @@ type ChatGPTRequestBody struct {
 // -H "Content-Type: application/json"
 // -H "Authorization: Bearer your chatGPT key"
 // -d '{"model": "text-davinci-003", "prompt": "give me good song", "temperature": 0, "max_tokens": 7}'
-func Completions(msg string) (string, error) {
+func Completions(msg, key string) (string, error) {
 	requestBody := ChatGPTRequestBody{
 		Model:            "text-davinci-003",
 		Prompt:           msg,
@@ -60,7 +60,7 @@ func Completions(msg string) (string, error) {
 		return "", err
 	}
 
-	apiKey := "你的apikey"
+	apiKey := key
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+apiKey)
 	client := &http.Client{}
